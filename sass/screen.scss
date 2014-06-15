@@ -2,7 +2,15 @@
 @import "compass/reset";
 @import "compass/css3";
 
-$hue: 348;
+$hue: 0;
+
+html {
+	background-color: hsla($hue, 0%, 20%, 1);
+}
+body {
+	max-width: 30em;
+	margin: 60px auto;
+}
 
 nav {
 	// colors

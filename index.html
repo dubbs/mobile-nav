@@ -168,24 +168,34 @@
   
 // add drilldown buttons
 $('nav li').has('ul').find('> a').append('<span class="drilldown"><span class="icon"></span></span>');
+// add open
+$('.active').addClass('open');
 
 $('.drilldown').on('click', function (e) {
   e.preventDefault();
-  $(this).closest('li').toggleClass('open');
+  var $li = $(this).closest('li');
+  // close all
+  $('li').not($li).removeClass('open')
+  // toggle current
+  $li.toggleClass('open');
+  // open parent
+  $li.parents('li').addClass('open');
+});
 
-
-
-  
-  // if ($ul.hasClass('open')) {
-  //   $ul.css('maxHeight', 'none');
-  // } else {
-  //   // store expanded height
-  //   var height = $ul.addClass('heightAuto').height();
-  //   $ul.removeClass('heightAuto');
-  //   // set height
-  //   $ul.css('maxHeight', height).toggleClass('open');   
-  // }
-
+$('a').on('click', function (e) {
+  e.preventDefault();
+  if ($(e.target).hasClass('icon')) {
+    return;
+  };
+  // turn off active
+  $('.active').removeClass('active');
+  // turn on current
+  var $a = $(this);
+  $a.addClass('active');
+  // turn on parents
+  $a.parents('li').addClass('active');
+  //
+  $a.closest('ul').find('.open').removeClass('open');
 });
 
 </script>
