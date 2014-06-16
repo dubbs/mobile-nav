@@ -5,74 +5,46 @@
 $hue: 0;
 
 html {
-	background-color: hsla($hue, 0%, 20%, 1);
+	background-color: hsla($hue, 0%, 13%, 1);
 }
 body {
 	max-width: 30em;
 	margin: 60px auto;
 }
 
+@mixin colors($percent) {
+	background-color: hsla($hue, 0%, $percent, 1);
+	border-bottom: 1px solid hsla($hue, 0%, $percent - 5, 1);
+	&:last-child {
+		border: none;
+	}
+	> a .drilldown {
+		background-color: hsla($hue, 0%, $percent - 5, 1);
+		&:hover {
+			background-color: hsla($hue, 0%, $percent - 7, 1);
+		}
+	}
+	&.active {
+		background-color: hsla($hue, 100%, $percent, 1);
+		> a .drilldown {
+			background-color: hsla($hue, 100%, $percent - 5, 1);
+			&:hover {
+				background-color: hsla($hue, 100%, $percent - 7, 1);
+			}
+		}
+	}	
+}
+
 nav {
 	// colors
 	> ul > li {
-		background-color: hsla($hue, 0%, 30%, 1);
-		border-bottom: 1px solid hsla($hue, 0%, 25%, 1);
-		> a .drilldown {
-			background-color: hsla($hue, 0%, 25%, 1);
-			&:hover {
-				background-color: hsla($hue, 0%, 23%, 1);
-			}
-		}
-		&.active {
-			background-color: hsla($hue, 100%, 30%, 1);
-			> a .drilldown {
-				background-color: hsla($hue, 100%, 25%, 1);
-				&:hover {
-					background-color: hsla($hue, 100%, 23%, 1);
-				}
-			}
-		}
+		@include colors(20%);
 		> ul > li {
-			background-color: hsla($hue, 0%, 40%, 1);
-			border-bottom: 1px solid hsla($hue, 0%, 35%, 1);
-			> a .drilldown {
-				background-color: hsla($hue, 0%, 35%, 1);
-				&:hover {
-					background-color: hsla($hue, 0%, 33%, 1);
-				}
-			}
-			&.active {
-				background-color: hsla($hue, 100%, 40%, 1);
-				> a .drilldown {
-					background-color: hsla($hue, 100%, 35%, 1);
-					&:hover {
-						background-color: hsla($hue, 100%, 33%, 1);
-					}
-				}
-			}
+			@include colors(25%);
 			> ul > li {
-				background-color: hsla($hue, 0%, 50%, 1);
-				border-bottom: 1px solid hsla($hue, 0%, 45%, 1);
-				> a .drilldown {
-					background-color: hsla($hue, 0%, 45%, 1);
-					&:hover {
-						background-color: hsla($hue, 0%, 43%, 1);
-					}
-				}
-				&.active {
-					background-color: hsla($hue, 100%, 50%, 1);
-					> a .drilldown {
-						background-color: hsla($hue, 100%, 45%, 1);
-						&:hover {
-							background-color: hsla($hue, 100%, 43%, 1);
-						}
-					}
-				}
+				@include colors(30%);
 				> ul > li {
-					background-color: hsla($hue, 0%, 60%, 1);
-					&.active {
-						background-color: hsla($hue, 100%, 60%, 1);
-					}
+					@include colors(35%);
 				}
 			}
 		}
